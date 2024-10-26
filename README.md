@@ -134,7 +134,7 @@ Add it to your InputMappingContext like so:
 
 ### Triggering the Ability
 
-For this example we're going to activate the ability by using its gameplay tag as follows:
+For this example we're going to activate the ability by using its gameplay tag everytime we press the input key:
 
 ![alt text](image-12.png)
 
