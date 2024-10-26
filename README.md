@@ -30,11 +30,14 @@ Launch the editor and go to `Edit > Plugins` and enable the following plugins:
 
 ## 3. Adding the `MotionWarpingComponent` to the your `Character`
 
+Just simple add the `MotionWarpingComponent` to your Blueprint Character:
+
 ![alt text](image-3.png)
 
-## 4. Setting up the Gameplay Ability System
+## 4. Setting up the Gameplay Ability System (GAS)
 
-For the sake of simplifying things a bit, let's setup the gameplay ability system (`AbilitySystemComponent`) in the `Character`. First, add the necessary dependencies to the project:
+For the sake of simplifying things a bit, let's set up the `Gameplay Ability System Component` in the `Character`. 
+First, add the necessary dependencies to the project:
 
 ### Add the following dependencies to `YourProject.Build.cs`:
 ```csharp
@@ -55,8 +58,8 @@ PublicDependencyModuleNames.AddRange(
 
 ### Add the `UAbilitySystemComponent` to the `YourCharacterClass.h`:
 
-In your `YourCharacterClass.h` add `#include <AbilitySystemInterface.h>`
-and forward declare the ability system component. Also add the interface to the character and the `GetAbilitySystemComponent` method declaration. You should have something like the following:
+In your `YourCharacterClass.h` add `#include <AbilitySystemInterface.h>` and forward declare the ability system component. 
+Also add the interface to the character and the `GetAbilitySystemComponent` method declaration. You should have something like the following:
 
 ```cpp
 #include "CoreMinimal.h"
@@ -75,13 +78,20 @@ class AYourCharacterClass : public ACharacter, public IAbilitySystemInterface
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
     // other stuff
+
+public:
+	// Begin Ability System Interface
+	UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	// End Ability System Interface
 }
 ```
   
-### In your `AYourCharacterClass.cpp` file include the `AbilitySystemComponent.h` header, add the `GetAbilitySystemComponent` method implementation, and also setup the `AbilitySystemComponent` like so:
+### Create the `AbilitySystemComponent` and implement interface
+
+In your `AYourCharacterClass.cpp` file include the `AbilitySystemComponent.h` header, add the `GetAbilitySystemComponent` method implementation, and also setup the `AbilitySystemComponent` like so:
 ```cpp
-#include <AbilitySystemComponent.h>
 // other includes
+#include <AbilitySystemComponent.h>
 
 AYourCharacterClass::AYourCharacterClass()
 {
@@ -96,11 +106,15 @@ UAbilitySystemComponent* AYourCharacterClass::GetAbilitySystemComponent() const
 }
 ```
 
-### Granting the Ability: On Character's `BeginPlay`:
+### Granting the Ability 
+
+For simplicity, let's grant the ability on Character's `BeginPlay` event callback:
 
 ![alt text](image-8.png)
 
-### If needed open the `GA_VaultMantle` ability and setup its parameters such as montages to play, size of trace box, and so on:
+### `GA_VaultMantle` parameters
+
+If needed open the `GA_VaultMantle` ability and setup its parameters such as montages to play, size of trace box, and so on:
 
 ![alt text](image-7.png)
 
@@ -118,7 +132,7 @@ Add it to your InputMappingContext like so:
 
 ![alt text](image-11.png)
 
-### Triggering the Ability:
+### Triggering the Ability
 
 For this example we're going to activate the ability by using its gameplay tag as follows:
 
