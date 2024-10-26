@@ -1,4 +1,4 @@
-# Multiplayer Vault and Mantle Ability Documentation
+# Multiplayer Vault and Mantle Movement Ability Documentation
 
 [![Vault and Mantle Example](https://img.youtube.com/vi/6XIxt-OAEWA/0.jpg)](https://youtu.be/6XIxt-OAEWA)
 
@@ -12,7 +12,7 @@ It should be pretty straightforward to set it up on any project, just follow alo
 
 ![alt text](image.png)
 
-### 2. Enabling Required Plugins
+## 2. Enabling Required Plugins
 
 Launch the editor and go to `Edit > Plugins` and enable the following plugins:
 
@@ -104,7 +104,6 @@ UAbilitySystemComponent* AYourCharacterClass::GetAbilitySystemComponent() const
 
 ![alt text](image-7.png)
 
-
 ## 5. Setting up Inputs and Triggering the Ability
 
 ### Inputs
@@ -121,15 +120,23 @@ Add it to your InputMappingContext like so:
 
 ### Triggering the Ability:
 
-The simplest way to activate the ability is by using its gameplay tag, as follows:
+For this example we're going to activate the ability by using its gameplay tag as follows:
 
 ![alt text](image-12.png)
 
+---
 # FAQ
 
-## 1. Compatible with Lyra?
+## 1. My project doesn't use the Gameplay Ability System (GAS), will it work?
 
-Yes. Create a new C++ ability based on the `ULyraGameplayAbility` copy and paste the relevant code from the `UGameplayAbility_VaultMantle` and that's it. If using the `Windwalker Echo` animation make sure to retarget to Lyra's skeleton. When opening the montage you should get something similar to the following screens:
+Unfortunately no. There is another plugin coming soon that will enable projects without GAS to have this gameplay mechanic. Stay tuned.
+
+## 2. Compatible with Lyra?
+
+Yes, but if you want to use it with the Lyra Ability Set (`ULyraAbilitySet`) it requires you to create a new C++ ability based on the `ULyraGameplayAbility`.
+You can simple copy and paste the relevant code from the `UGameplayAbility_VaultMantle` and that's it. 
+If using the `Windwalker Echo` animation make sure to retarget to Lyra's character skeleton. 
+When opening the montage you should get something similar to the following screens:
 
 ![alt text](image-5.png)
 
@@ -137,6 +144,6 @@ Pick a replacement for the skeleton:
 
 ![alt text](image-6.png)
 
-Lyra video example:
+### Lyra video example:
 
 [![Lyra Example](https://img.youtube.com/vi/tnI1joUvRi4/0.jpg)](https://youtu.be/tnI1joUvRi4)
